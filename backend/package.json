@@ -5,9 +5,8 @@
   "main": "dist/llm.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/llm.js"
-  },
+  "start": "node dist/llm.js"
+},
   "dependencies": {
     "@anthropic-ai/sdk": "^0.20.0",
     "@types/express": "^5.0.6",

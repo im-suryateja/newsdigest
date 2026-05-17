@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npm run build --prefix backend",
-    "start": "npm start --prefix backend"
-  }
+  "start": "npm start --prefix backend"
+}
 }

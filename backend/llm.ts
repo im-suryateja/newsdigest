@@ -2,10 +2,46 @@
 // Change LLM_PROVIDER in .env to switch between Claude, OpenAI, or Gemini.
 // No other code changes needed.
 
+
+
 import Anthropic from '@anthropic-ai/sdk';
 import OpenAI from 'openai';
 import axios from 'axios';
 import logger from '../utils/logger';
+
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+app.use(express.json());
+
+// 1. Keeps Railway health checks happy
+app.get('/', (req, res) => {
+  res.json({ message: "NewsDigest Backend API is running smoothly!" });
+});
+
+// 2. The pipeline execution controller
+async function runNewsPipeline() {
+  console.log("Starting the data refresh pipeline...");
+  
+  // TODO: Add your NewsAPI fetch loops and Firestore writing logic here later!
+  console.log("Fetching articles from NewsAPI...");
+  
+  console.log("Pipeline processing complete!");
+}
+
+// 3. Expose the refresh trigger endpoint
+app.post('/api/admin/refresh', async (req, res) => {
+  try {
+    runNewsPipeline(); 
+    res.json({ status: "success", message: "News refresh pipeline triggered in the background!" });
+  } catch (error) {
+    res.status(500).json({ status: "error", error: String(error) });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is actively running on port ${PORT}`);
+});
 
 export type LLMProvider = 'claude' | 'openai' | 'gemini';
 

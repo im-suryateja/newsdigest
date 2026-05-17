@@ -2,12 +2,14 @@
   "name": "newsdigest-backend",
   "version": "1.0.0",
   "description": "Backend for NewsDigest",
-  "main": "sources.ts",
+  "main": "llm.ts",
   "scripts": {
-    "start": "ts-node sources.ts"
+    "start": "ts-node llm.ts"
   },
   "dependencies": {
+    "@types/express": "^5.0.6",
     "dotenv": "^16.4.5",
+    "express": "^5.2.1",
     "firebase-admin": "^12.0.0"
   },
   "devDependencies": {

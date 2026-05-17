@@ -4,7 +4,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import OpenAI from 'openai';
 import axios from 'axios';
-import logger from './utils/logger';
+import logger from './utils/logger.js';
 const app = express();
 const PORT = process.env.PORT || 8080;
 app.use(express.json());

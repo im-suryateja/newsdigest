@@ -12,6 +12,11 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 
+// Make sure your listener at the bottom looks like this:
+app.listen(Number(PORT), '0.0.0.0', () => {
+  console.log(`Server is actively running on port ${PORT}`);
+});
+
 // 1. Keeps Railway health checks happy
 app.get('/', (req, res) => {
   res.json({ message: "NewsDigest Backend API is running smoothly!" });

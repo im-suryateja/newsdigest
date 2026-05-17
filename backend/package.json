@@ -1,12 +1,17 @@
 {
-  "name": "backend",
+  "name": "newsdigest-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend for NewsDigest",
+  "main": "sources.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node sources.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "firebase-admin": "^12.0.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
 }

@@ -1,10 +1,10 @@
-// ── LLM Provider Adapter ─────────────────────────────────────────────────────
+// ── LLM Provider Adapter & Server ───────────────────────────────────────────
 // Change LLM_PROVIDER in .env to switch between Claude, OpenAI, or Gemini.
 // No other code changes needed.
+import express from 'express';
 import Anthropic from '@anthropic-ai/sdk';
 import OpenAI from 'openai';
 import axios from 'axios';
-import logger from './utils/logger.js';
 const app = express();
 const PORT = process.env.PORT || 8080;
 app.use(express.json());
@@ -101,7 +101,7 @@ function parseResponse(text, opts) {
         };
     }
     catch (err) {
-        logger.error('Failed to parse LLM response', { err, text });
+        console.error('Failed to parse LLM response:', err, text);
         // Fallback: return raw text as summary
         return {
             headline: opts.title,
@@ -115,7 +115,7 @@ function parseResponse(text, opts) {
 // ── Main export ───────────────────────────────────────────────────────────────
 export async function summarizeArticle(opts) {
     const provider = (process.env.LLM_PROVIDER ?? 'claude');
-    logger.info(`Summarizing with provider: ${provider}`, { title: opts.title });
+    console.log(`Summarizing with provider: ${provider} - Title: ${opts.title}`);
     switch (provider) {
         case 'claude':
             return summarizeWithClaude(opts);
